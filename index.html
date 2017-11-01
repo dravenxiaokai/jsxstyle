@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        .alert-text{
+            color: red;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/jsx">
+        var Hello = React.createClass({
+            getInitialState:function(){
+                alert('init')
+                return {
+                    opacity:1.0,
+                    fontSize:'12px'
+                }
+            },
+            render:function(){
+                return <div style={{opacity:this.state.opacity,fontSize:this.state.fontSize}}>Hello {this.props.title}{this.props.name}</div>
+            },
+            componentWillMount:function(){
+                alert('will')
+            },
+            componentDidMount:function(){
+                alert('did')
+
+                var _self = this
+                window.setTimeout(function(){
+                    _self.setState({
+                        opacity:0.5,
+                        fontSize:'44px'
+                    })
+                },1000)
+            }
+        })
+        React.render(<Hello name='World' title="Mr."/>,document.getElementById('container'))
+        document.getElementById('container').style.paddingLeft = '104px'
+
+        function test(){
+            this.x = 1
+        }
+        var o = new test()
+    </script>
+</body>
+</html>
